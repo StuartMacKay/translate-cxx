@@ -1,0 +1,16 @@
+<h1>Release Notes for Translate AS1 for C++, Build 2.</h1>
+
+<table class="index">
+<tr><td class="section">Bug Fixes</td></tr>
+<tr><td class="item"><a href="#fix1">References to tables containing more than 255 variable names and strings are now supported.</a></td></tr>
+</table>
+
+<h2>Bug Fixes</h2>
+
+<h3><a name="fix1">1. References to tables containing more than 255 variable names and strings are now supported.</a></h3>
+
+<P>The Flash Player uses a stack to execute the byte-codes representing compiled Actionscript. Variables are referenced by pushing the name of the variable onto the stack, then executing a GetVariable action. Unless a variable name is very short, repeatedly pushing a string onto the stack will greatly increase the size of an swf file. The Table action was introduced in Flash 5 to address this problem. Rather than pushing a string onto the stack, the name of the variable is stored in the Table action and a reference (the index of the string in the table) is pushed onto the stack instead. In Flash 5 the Table action could store up to 255 strings. This was expanded in Flash 6 to support 65535 strings.</P>
+
+<P>To handle the expanded table size, a new data-type was introduced to distinguish between the 8-bit and 16-bit indices. In the previous release of Translate, 16-bit indices were identified using the value that identified them as 8-bit indices. This caused the stack to be corrupted and the Flash Player to crash.</P>
+
+<P>This build now corrects this problem. The size and indexing of the Table is handled internally in Translate and does not affect how Actionscript is written or compiled.</P>

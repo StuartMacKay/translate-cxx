@@ -1,0 +1,69 @@
+<h1>Release Notes for Translate AS1 for C++, Version 1.0.6.</h1>
+
+<table>
+<tr><td class="section">Bug Fixes</td></tr>
+<tr><td class="item"><a href="#fix1">Floating point numbers now supported.</a></td></tr>
+<tr><td class="section">New Features</td></tr>
+<tr><td class="item"><a href="#new1">Conditional compilation directives now supported.</a></td></tr>
+</table>
+
+<h2>Bug Fixes</h2>
+
+<h3><a name="fix1">1. Floating point numbers now supported.</a></h3>
+
+<P>The grammar now parses floating-point numbers correctly.</P>
+
+<pre>
+var i = 0.0;
+var j = .0;
+var k = 1.0e10;
+</pre>
+
+<P>In previous releases of Translate AS1 only integer numbers were parsed correctly.</P>
+
+<h2>New Features</h2>
+
+<h3><a name="new1">1. Conditional compilation directives now supported.</a></h3>
+
+<P>The preprocessor now implements #define, #ifdef, #ifndef, #else and #endif directives:</P>
+
+<pre>
+#define DIRECTIVE 1
+
+#ifdef DIRECTIVE
+    a = 1;
+    b = 2;
+#else
+    a = 3;
+    b = 4;
+#endif
+
+#ifndef DIRECTIVE
+    c = 1;
+    d = 2;
+#else
+    c = 3;
+    d = 4;
+#endif
+</pre>
+
+<p>Is equivalent to the script:</p>
+
+<pre>
+    a = 1;
+    b = 2;
+
+    c = 3;
+    d = 4;
+#endif
+</pre>
+
+<P>There are a few limitations to the current implementation of the directives:</p>
+
+<ul>
+<li>The values associated with #define directives can only use interger literals.</li>
+<li>Directives cannot be nested.</li>
+</ul> 
+
+<P>The functionality supported in directives will be expanded with later releases.</P>
+

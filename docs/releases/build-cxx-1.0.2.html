@@ -1,0 +1,44 @@
+<h1>Release Notes for Translate AS1 for C++, Build 3.</h1>
+
+<table class="index">
+<tr><td class="section">Bug Fixes</td></tr>
+<tr><td class="item"><a href="#fix1">instanceof operator is now supported.</a></td></tr>
+<tr><td class="item"><a href="#fix2">delete operator is now supported.</a></td></tr>
+</table>
+
+<h2>Bug Fixes</h2>
+
+<h3><a name="fix1">1. instanceof operator is now supported.</a></h3>
+
+<P>In Flash 6 (Flash MX) the instanceof operator was added to Actionscript to allow runtime type checking of objects:</P>
+
+<pre>
+    var obj = new MyClass;
+
+    if (obj instanceof MyClass)
+    {
+        ...
+    }
+</pre>
+
+<P>This build updates the parser to support the instanceof operator. Previous releaes would generate an error when parsing a script containing instanceof.</P>
+
+<h3><a name="fix2">2. delete operator is now supported.</a></h3>
+
+<P>In previous releases of Translate objects or variables were deleted using the delete function:</P>
+
+<pre>
+    var obj = new MyClass;
+
+    delete(obj);
+</pre>
+
+<P>This release now also allows delete to be used as an unary operator:</P>
+
+<pre>
+    var obj = new MyClass;
+
+    delete obj;
+</pre>
+
+

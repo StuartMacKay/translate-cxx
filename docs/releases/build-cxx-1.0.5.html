@@ -1,0 +1,33 @@
+<h1>Release Notes for Translate AS1 for C++, Build 6.</h1>
+
+<table class="index">
+<tr><td class="section">Bug Fixes</td></tr>
+<tr><td class="item"><a href="#fix1">Var statement now generates an InitVariable action.</a></td></tr>
+</table>
+
+<h2>Bug Fixes</h2>
+
+<h3><a name="fix1">1. Var statement now generates an InitVariable action.</a></h3>
+
+<P>In ActionScript the <em>var</em> keyword is used to create initialize a local variable:</P>
+
+<pre>
+    var i = 0;
+</pre>
+
+<P>In previous releases of Translate AS1 the initialization was performed by generating a SetVariable action rather than an InitVariable action. This prevented the reuse of variable names with a more restricted scope, for example:</P>
+
+<pre>
+    var i = 1;
+
+    if (i == 1)
+    {
+        var i = 0;
+    }
+
+    trace(i); // i = 0;
+</pre>
+
+<P>Here the variable name, <em>i</em> is reused within the body of the if statement. By setting the value using a SetVariable action the Flash Player is not able to distinguish that the scope of the variable should be restricted to the body of the if statement and so the first definition of <em>i</em> is updated instead.</P>
+
+<P>The InitVariable actions is now generated when compiling a <em>var</em> keyword allowing the Flash Player to track the scope of variables as a program executes.</P>

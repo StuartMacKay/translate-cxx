@@ -1,0 +1,19 @@
+<h1>Release Notes for Translate AS1 for C++, Build 4.</h1>
+
+<table class="index">
+<tr><td class="section">Bug Fixes</td></tr>
+<tr><td class="item"><a href="#fix1">Multiple assignment statements are now supported.</a></td></tr>
+</table>
+
+<h2>Bug Fixes</H2>
+
+<h3><a name="fix1">1. Multiple assignment statements are now supported.</a></h3>
+
+<P>Compound statements where a single value is assigned to several variables:</P>
+
+<pre>
+    var a = b = c = 0;
+</pre>
+
+<P>is now supported. Previous releases of Translate would generate an error when parsing a script.</P>
+
